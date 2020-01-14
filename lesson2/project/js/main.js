@@ -1,26 +1,45 @@
-'use strict';
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+let getRequest = (url) => {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status !== 200) {
+          reject('Error');
+        } else {
+          resolve(xhr.responseText);
+        }
+      }
+    };
+    xhr.send();
+  });
+};
 
 class ProductList {
   constructor(container = '.products') {
     this.container = container;
     this.goods = [];
     this.allProducts = [];
-    this._fetchProducts();
-    this.render();
+    // this._fetchProducts();
+    this._getProducts()
+        .then(data => {
+          this.goods = [...data];
+          this.render();
+        });
   }
 
-  _fetchProducts() {
-    this.goods = [
-      {id: 1, title: 'Notebook', price: 45000},
-      {id: 2, title: 'Mouse', price: 3000},
-      {id: 3, title: 'Keyboard', price: 2500},
-      {id: 4, title: 'Gamepad', price: 1500},
-    ]
+  _getProducts() {
+    return fetch(`${API}/catalogData.json`)
+        .then(result => result.json())
+        .catch(error => {
+          console.log(error);
+        });
   }
 
   render() {
     const block = document.querySelector(this.container);
-
     for (let product of this.goods) {
       const productObject = new ProductItem(product);
       this.allProducts.push(productObject);
@@ -30,7 +49,7 @@ class ProductList {
 }
 
 class ProductItem {
-  constructor(product, img = 'https://placehold.it/200x150') {
+  constructor(product, img='https://placehold.it/200x150') {
     this.title = product.title;
     this.price = product.price;
     this.id = product.id;
@@ -74,6 +93,11 @@ class Basket {
     this.goodsList.remove(good)
   }
 
+  getGoods() {
+    return this.goodsList
+  }
+
+  render() {}
 }
 
 const list = new ProductList();
