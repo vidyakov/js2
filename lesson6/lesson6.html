@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 6 - Vue.js components</title>
+</head>
+<body>
+    <div id="app">
+        <button v-for="tab in tabs"
+                :key="tab"
+                @click="currentTab = tab">{{ tab }}</button>
+        <component :is="currentComponent"></component>
+        <some-el
+                :title="someString"
+                :counter="counter"
+                @increase="increase">
+            <div>I'm injected as slot 1</div>
+        </some-el>
+<!--        <some-el-->
+<!--                :title="someString"-->
+<!--                :counter="counter"-->
+<!--                @increase="increase"></some-el>-->
+<!--        <some-el-->
+<!--                :title="someString"-->
+<!--                :counter="counter"-->
+<!--                @increase="increase"></some-el>-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="components.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

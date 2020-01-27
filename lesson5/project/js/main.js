@@ -31,9 +31,7 @@ const app = new Vue({
                 this.products.push(el);
               }
             }
-            console.log(this.products);
           });
-      setTimeout(() => this.$destroy(), 2000)
     },
     isEmpty() {
       return this.userProducts.length === 0
