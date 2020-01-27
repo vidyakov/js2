@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1-3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form class="feedback-form">
+        <label for="user-name">Имя</label><input id="user-name" value="" onfocus="if(this.value == 'Имя') this.value = '' ">
+        <label for="user-phone">Телефон</label><input id="user-phone" value="" onfocus="if(this.value == '+7(999)999-99-99') this.value = '' ">
+        <label for="user-email">Email</label><input id="user-email" value="" onfocus="if(this.value == 'best@email.com') this.value = '' ">
+        <label>
+            <textarea onfocus="if(this.value == 'Ваш комментарий') this.value = '' ">Ваш комментарий</textarea>
+        </label>
+    </form>
+    <button id="send-button">Отправить</button>
+    <p id="test"></p>
+    <script src="task1-3.js"></script>
+</body>
+</html>

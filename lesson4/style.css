@@ -1,0 +1,13 @@
+input {
+    display: block;
+    margin-bottom: 20px;
+}
+
+#user-comment {
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 200px;
+    height: 100px;
+}

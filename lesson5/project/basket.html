@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Интернет-магазин</a></div>
+        <div class="cart">
+            <form action="#" class="search-form">
+                <!--                ПОИСК-->
+                <input type="text" class="search-field" v-model.lazy="searchLine">
+                <button class="btn-search" type="submit" @click="filterGoods">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <a class="btn-cart" href="basket.html">Корзина</a>
+        </div>
+    </header>
+    <div id="app">
+        <div v-if="isEmpty"><h2>Ваша корзина пуста</h2></div>
+        <div v-else>
+            <h2>Ваши товары:</h2>
+            <div class="product" v-for="product of products" :key="product.title">
+                <img :src="product.img" alt="">
+                <div class="">
+                    <p>{{ product.title }}</p>
+                    <p>{{ product.quantity }}</p>
+                    <p>{{ product.price * product.quantity }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
